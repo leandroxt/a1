@@ -1,0 +1,22 @@
+.job-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 20px 60px;
+  border: solid 1px #000;
+}
+
+.job-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-title label.title {
+  font-size: 18px;
+  color: #000;
+}
+
+.job-title label.company {
+  font-size: 14px;
+  color: #4d4d4d;
+}

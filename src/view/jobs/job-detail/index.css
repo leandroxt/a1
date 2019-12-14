@@ -1,0 +1,50 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.content .description {
+  flex: 2;
+  padding: 12px 24px;
+}
+
+.content .informations {
+  flex: 1;
+  padding: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.info strong {
+  margin-right: 8px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags .tag {
+  border: 2px solid rgb(240, 240, 240);
+  color: rgb(77, 77, 77);
+  border-radius: 4px;
+  padding: calc(4.9px + (1.4 * ((100vw - 320px) / 1280))) calc(7px + (2 * ((100vw - 320px) / 1280)));
+  font-size: calc(9.8px + (2.8 * ((100vw - 320px) / 1280)));
+  margin-top: calc(1.75px + (0.5 * ((100vw - 320px) / 1280)));
+  margin-bottom: calc(1.75px + (0.5 * ((100vw - 320px) / 1280)));
+  flex-shrink: 0;
+  margin-right: calc(3.5px + (1 * ((100vw - 320px) / 1280)));
+}
+
+.apply {
+  margin-top: 30px;
+}
+
+.apply .btn {
+  width: 100%;
+}

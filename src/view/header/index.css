@@ -1,0 +1,22 @@
+.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  color: #666;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #eee;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header img.logo {
+  width: 120px;
+}
+
+.header label {
+  color: #6a737d;
+}
