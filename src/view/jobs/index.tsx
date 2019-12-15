@@ -10,6 +10,7 @@ import './index.css';
 
 import useReducer from '../../state';
 import { toggleJobDetail, setSelectedJob, fetchJobs, toggleLoading } from '../../state/action';
+import { jobs } from '../../state/selector';
 
 const QUERY = gql`
   query {
@@ -61,7 +62,7 @@ const Jobs: FC = (): ReactElement => {
     <div className="container">
       <label className="title">Trabalhos abertos</label>
       <Loading loading={state.loading}>
-        {state.jobs.map((job: Job) => <JobItem key={job.id} job={job} openDetail={openDetail} />)}
+        {jobs(state).map((job: Job) => <JobItem key={job.id} job={job} openDetail={openDetail} />)}
       </Loading>
       {
         state.selectedJob && state.isOpenJobDetail && (
