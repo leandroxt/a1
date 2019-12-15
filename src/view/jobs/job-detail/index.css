@@ -48,3 +48,39 @@
 .apply .btn {
   width: 100%;
 }
+
+.btn.mt {
+  margin-top: 20px;
+}
+
+.subscribe-form {
+  padding: 10px;
+  background: #F0F0F0;
+  box-shadow: inset 0 1px 2px rgba(27,31,35,0.075);
+}
+
+.subscribe-form input {
+  min-height: 34px;
+  padding: 6px 8px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(27,31,35,0.075);
+}
+
+.subscribe-form button.btn {
+  width: 100%;
+}
+
+.subscribe-form button.btn:disabled {
+  background: #333;
+  color: #fff;
+  cursor: not-allowed;
+}

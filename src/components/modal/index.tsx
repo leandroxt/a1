@@ -1,19 +1,11 @@
 import React, { FC, ReactElement, MouseEvent } from 'react';
 import './index.css';
 
+import { classnames } from '../../utils';
+
 interface IProps {
   isOpen: boolean;
   close: (event: MouseEvent<HTMLButtonElement>) => void;
-}
-
-interface IClassNames {
-  [key: string]: boolean;
-}
-
-function classnames(classes: IClassNames): string {
-  return Object.keys(classes)
-    .filter((key: string): boolean => classes[key])
-    .reduce((accu: string, curr: string): string => `${accu} ${curr}`, '');
 }
 
 const Modal: FC<IProps> = ({ isOpen, close, children }): ReactElement<IProps> => {
