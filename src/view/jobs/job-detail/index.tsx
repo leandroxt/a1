@@ -24,6 +24,9 @@ const QUERY = gql`
       commitment {
         title
       }
+      company {
+        name
+      }
     }
   }
 `;
@@ -73,6 +76,10 @@ const JobDetail: FC<IProps> = ({ isOpen, close, jobSlug, companySlug }: IProps):
 
             <div className="info">
               <strong>Remoto: </strong>{data && Boolean(data.job.remotes.length) ? 'Sim' : 'Não'}
+            </div>
+
+            <div className="info">
+              <strong>Empresa: </strong>{data && data.job.company.name}
             </div>
 
             <div className="apply">

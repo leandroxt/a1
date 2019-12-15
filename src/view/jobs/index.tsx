@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -8,10 +8,8 @@ import JobDetail from './job-detail';
 import { Job } from './types';
 import './index.css';
 
-interface IProps {
-  loading: boolean;
-  jobs: Array<Job>;
-}
+import useReducer from '../../state';
+import { toggleJobDetail, setSelectedJob, fetchJobs, toggleLoading } from '../../state/action';
 
 const QUERY = gql`
   query {
@@ -33,30 +31,45 @@ const QUERY = gql`
   }
 `;
 
+interface IProps {
+  loading: boolean;
+  jobs: Array<Job>;
+}
+
 const Jobs: FC = (): ReactElement => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-  function toggleIsOpen(): void { setIsOpen((ps) => !ps); }
+  const [state, dispatch] = useReducer();
+
+  function _toggleJobDetail() {
+    toggleJobDetail()(dispatch)
+  }
   function openDetail(job: Job): void {
-    setSelectedJob(() => job);
-    toggleIsOpen();
+    setSelectedJob(job)(dispatch);
+    _toggleJobDetail();
   }
 
-  const { loading, data } = useQuery<IProps>(QUERY);
+  useEffect(() => {
+    toggleLoading()(dispatch);
+  }, []);
+
+  useQuery<IProps>(QUERY, {
+    onCompleted: ({ jobs }) => {
+      fetchJobs(jobs)(dispatch);
+    }
+  });
 
   return (
     <div className="container">
       <label className="title">Trabalhos abertos</label>
-      <Loading loading={loading}>
-        {data && data.jobs.map((job: Job) => <JobItem key={job.id} job={job} openDetail={openDetail} />)}
+      <Loading loading={state.loading}>
+        {state.jobs.map((job: Job) => <JobItem key={job.id} job={job} openDetail={openDetail} />)}
       </Loading>
       {
-        selectedJob && isOpen && (
+        state.selectedJob && state.isOpenJobDetail && (
           <JobDetail
-            isOpen={isOpen}
-            close={toggleIsOpen}
-            jobSlug={selectedJob.slug}
-            companySlug={selectedJob.company.slug}
+            isOpen={state.isOpenJobDetail}
+            close={_toggleJobDetail}
+            jobSlug={state.selectedJob.slug}
+            companySlug={state.selectedJob.company.slug}
           />
         )
       }
